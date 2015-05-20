@@ -35,6 +35,9 @@ nmap <leader>w :w!<cr>
 " map <leader>e :e! ~/.vimrc<cr>
 map <leader>e :vsplit! ~/.nvimrc<cr><C-w>L
 
+" allow to go to normal mode in the terminal window by pressing escape twice
+tnoremap <ESC><ESC> <C-\><C-N>
+
 " Get there in style
 if ! has("gui_running")
     set t_Co=256
@@ -247,6 +250,12 @@ set laststatus=2
 
 " Hide the mouse pointer while typing
 set mousehide
+
+" Allow for dragging of split borders & switching windows using the mouse
+if has('mouse')
+  set mouse=a
+endif
+
 
 " The GUI (i.e. the 'g' in 'gvim') is fantastic, but let's not be
 " silly about it :)  The GUI is fantastic, but it's fantastic for
