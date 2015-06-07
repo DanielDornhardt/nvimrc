@@ -10,3 +10,6 @@
 [submodule "colors/kalisi"]
 	path = colors/kalisi
 	url = https://github.com/freeo/vim-kalisi
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = git@github.com:bling/vim-airline.git
