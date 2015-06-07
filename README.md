@@ -16,6 +16,8 @@ http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-patho
 
 or this: http://usevim.com/2012/03/01/using-pathogen-with-git-submodules/
 
+This fellow also seems to know a bit about updating his plugins too: http://www.reddit.com/r/vim/comments/1w4udb/best_vim_plugin_manager/cez6x5q
+
 ### Prepare repo for submodules:
 
     git submodule init
