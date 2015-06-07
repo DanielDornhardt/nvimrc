@@ -16,6 +16,9 @@ nmap <leader>x <C-T>
 " Start pathogen plugin management
 call pathogen#infect()
 
+" disable modelines - can prevent some exploits
+set modelines=0
+
 " Map previous buffer switching to 2xleader
 nmap <leader><leader> :b#<cr>
 
@@ -40,12 +43,14 @@ tnoremap <ESC><ESC> <C-\><C-N>
 
 " Get there in style
 if ! has("gui_running")
+    " set 256 colors in terminal
     set t_Co=256
 endif
 
 " feel free to choose :set background=light for a different style
-set background=light
-"set background=dark
+"set background=light
+set background=dark
+colors kalisi
 " colors synic_dd
 " colors peaksea 
 " colors torte
@@ -72,8 +77,12 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" we're probably gonna use markdown more often than modula-2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 " Turn on that syntax highlighting
 syntax on
+syntax enable
 
 " Wanna see line numbers!
 set number
@@ -91,8 +100,6 @@ set showmode
 " with +wildmenu.  See :help 'wildmenu'
 set wildmenu
 set wildmode=list:longest
-
-filetype plugin on
 
 " Set tab default to 4 spaces;
 " ALSO overwritten by _vimrc_local.vim's from here ($HOME)
@@ -374,4 +381,15 @@ com! -nargs=* Sudow w !sudo tee >/dev/null %
 " open in marked
 :nnoremap <leader>p :silent !open -a Marked.app '%:p'<cr>
 
+" NERDTree - config
+
+" Toggle NerdTree
+nmap <silent> <leader>n :NERDTreeToggle<CR>
+
+" open current file in NERDTree
+nmap <leader>N :NERDTreeFind<CR>
+
+" remap some nerdtree commands which mess with my personal layout
+"let NERDTreeMapJumpNextSibling='<C-n>'
+"let NERDTreeMapJumpPrevSibling='<C-p>'
 
