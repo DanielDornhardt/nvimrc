@@ -37,3 +37,6 @@
 [submodule "additional/slava-tern-meteor"]
 	path = additional/slava-tern-meteor
 	url = git@github.com:Slava/tern-meteor.git
+[submodule "bundle/editorconfig-vim"]
+	path = bundle/editorconfig-vim
+	url = git@github.com:editorconfig/editorconfig-vim.git
