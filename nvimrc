@@ -36,7 +36,7 @@ nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
 " map <leader>e :e! ~/.vimrc<cr>
-map <leader>e :vsplit! ~/.nvimrc<cr><C-w>L
+map <leader>e ~/.nvimrc<cr><C-w>L
 
 " allow to go to normal mode in the terminal window by pressing escape twice
 tnoremap <ESC><ESC> <C-\><C-N>
@@ -138,18 +138,6 @@ set smartcase
 set nobackup
 set nowb
 set noswapfile
-
-"Persistent undo
-try
-    if MySys() == "windows"
-      set undodir=C:\Windows\Temp
-    else
-      set undodir=~/.nvim/undo
-    endif
-
-    set undofile
-catch
-endtry
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings by derek wyatt, http://www.derekwyatt.org/
@@ -417,12 +405,11 @@ if executable('ag')
     let g:unite_source_grep_recursive_opt = ''
 endif
 
-nnoremap <leader>f :<C-u>Unite -auto-preview -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>g :<C-u>Unite -auto-preview -buffer-name=grep    -start-insert grep:!<cr>
-nnoremap <leader>r :<C-u>Unite -auto-preview -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -auto-preview -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -auto-preview -buffer-name=buffer  buffer<cr>
+nnoremap <leader>f :<C-u>Unite -auto-preview -vertical-preview -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>g :<C-u>Unite -auto-preview -vertical-preview -buffer-name=grep    -start-insert grep:!<cr>
+nnoremap <leader>r :<C-u>Unite -auto-preview -vertical-preview -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>y :<C-u>Unite -auto-preview -vertical-preview -buffer-name=yank    history/yank<cr>
+nnoremap <leader>b :<C-u>Unite -auto-preview -vertical-preview -buffer-name=buffer  buffer<cr>
 
 " nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 " nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
@@ -444,4 +431,15 @@ nnoremap <leader>e :<C-u>Unite -auto-preview -buffer-name=buffer  buffer<cr>
 
 " gundo
 nnoremap <leader>u :GundoToggle<CR>
+
+" Enable persistent undo so that undo history persists across vim sessions
+set undofile
+set undodir=~/.nvim/undo
+
+" tcomment is cool, but we don't want all his shortcuts
+let g:tcommentMaps = 0
+
+noremap <c-/> :tcomment<cr>
+vnoremap <c-/> :tcommentmaybeinline<cr>
+inoremap <c-/> :tcomment<cr>
 
